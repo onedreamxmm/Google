@@ -43,8 +43,8 @@ class Solution:
     def minEffort(self, heights):
         row, col = len(heights), len(heights[0])
         diff = [[float('inf')] * col for _ in range(row)]
-        # diff = [[float('inf')] * col] * row    #why wrong????
-        # print(diff)
+        #diff = [[float('inf')] * col] * row    #why wrong????
+        #print(diff)
         diff[0][0] = 0
         minHeap = [(0, 0, 0)]  # (difference, row, column)
         while minHeap:
