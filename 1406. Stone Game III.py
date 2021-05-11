@@ -33,8 +33,10 @@ Constraints:
 1 <= values.length <= 50000
 -1000 <= values[i] <= 1000
 
+Solution:
 time: O(n)
 space: O(1)
+dp[i] means how much current player is ahead of opponent (difference of scores).
 '''
 
 
