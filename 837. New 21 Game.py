@@ -25,6 +25,24 @@ Output: 0.73278
 Constraints:
 0 <= k <= n <= 104
 1 <= maxPts <= 104
+
+Intuition:
+The same problems as "Climbing Stairs" or "Fibo Sequence".
+
+Explanation:
+dp[i] is the probability that we get points i at some moment.
+In another word:
+1 - dp[i]is the probability that we skip the points i.
+
+The do equation is that:
+dp[i] = sum(last W dp values) / W
+
+To get Wsum = sum(last W dp values),
+we can maintain a sliding window with size at most W.
+
+Time Complexity:
+Time O(N)
+Space O(N), can be improve to O(W)
 '''
 
 
