@@ -22,26 +22,33 @@ Note: The length of each dimension in the given grid does not exceed 50.
 
 '''
 from collections import deque
+
+
 class Solution:
-    def maxArea1(self, grid):
-        row, col = len(grid), len(grid[0])
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
         res = 0
-        for r in range(row):
-            for c in range(col):
-                if not grid[r][c]:
-                    continue
-                queue = deque([(r, c)])
-                area = 0
-                grid[r][c] = 0
-                while queue:
-                    xx, yy = queue.popleft()
-                    area += 1
-                    for x, y in (xx, yy+1), (xx, yy-1), (xx+1, yy), (xx-1, yy):
-                        if 0 <= x < row and 0 <= y < col and grid[x][y]:
-                            queue.append((x, y))
-                            grid[x][y] = 0
-                res = max(res, area)
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    area = 1
+                    grid[i][j] = 0
+                    queue = deque([(i, j)])
+
+                    while queue:
+                        x, y = queue.popleft()
+                        for xx, yy in (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1):
+                            if 0 <= xx < m and 0 <= yy < n and grid[xx][yy] == 1:
+                                area += 1
+                                grid[xx][yy] = 0
+                                queue.append((xx, yy))
+
+                    res = max(res, area)
+
         return res
+
+
 '''
 Approach #1: breadth-First Search
 Time Complexity: O(R*C), where R is the number of rows in the given grid, and C is the number of columns. We visit every square once.
